@@ -1,0 +1,116 @@
+Location spawnLocation = receiver.getLocation();
+NPC npc = new NPC(spawnLocation, "Steve");
+npc.setPing(NPCPing.FOUR_BARS);
+npc.setGameMode(NPCGamemode.CREATIVE);
+npc.spawnNPC(receiver);
+
+
+
+Location spawnLocation = receiver.getLocation();
+NPC npc = new NPC(spawnLocation, "Steve");
+npc.spawnNPC(receiver);
+npc.destroyNPC(receiver);
+
+
+
+NPCSkinTextures.getByUsername(this, "DanielTheDev", (success,skin)->{
+    if(success) {
+        Location spawnLocation = receiver.getLocation();
+        NPC npc = new NPC(spawnLocation, "Steve");
+        npc.setSkin(skin);
+        npc.spawnNPC(receiver);
+    }
+});
+
+
+
+NPC npc = new NPC(spawnLocation, "Steve");
+npc.spawnNPC(receiver);
+npc.setASyncSkinByUsername(this, receiver, "DanielTheDev");
+
+
+
+NPC npc = new NPC(spawnLocation, "Steve");
+npc.spawnNPC(receiver);
+npc.setASyncSkinByUsername(this, receiver, "DanielTheDev");
+npc.setNameTagVisibility(receiver, false);
+
+NPCMetaData metaData = npc.getMetadata();
+metaData.setSkinStatus(NPCSkinStatus.HAT_ENABLED, NPCSkinStatus.JACKET_ENABLED);
+metaData.setPose(NPCPose.SLEEPING);
+metaData.setShaking();
+npc.updateMetadata(receiver);
+
+
+
+NPCSkinTextures.getByUsername(this, "Notch", (success1, skin1) -> {
+    NPCSkinTextures.getByUsername(this, "DanielTheDev", (success2, skin2) -> {
+
+        NPC npc1 = new NPC(spawnLocation, "Notch");
+        NPC npc2 = new NPC(spawnLocation, "DanielTheDev");
+
+        npc1.setSkin(skin1);
+        npc1.spawnNPC(receiver);
+
+        npc2.setSkin(skin2);
+        npc2.spawnNPC(receiver);
+
+        npc1.setPassenger(receiver, npc2.getEntityID());
+
+        npc1.getMetadata().setPose(NPCPose.CROUCHING);
+        npc1.updateMetadata(receiver);
+    });
+});
+
+
+
+NPCSkinTextures.getByUsername(this, "DanielTheDev", (success2, skin) -> {
+    final NPC npc = new NPC(spawnLocation, "DanielTheDev");
+
+    npc.setSkin(skin);
+    npc.spawnNPC(receiver);
+
+    npc.setEquipment(receiver, NPCItemSlot.HELMET, new ItemStack(Material.GOLD_BLOCK));
+    npc.setEquipment(receiver, NPCItemSlot.CHESTPLATE, new ItemStack(Material.GOLDEN_CHESTPLATE));
+    npc.setEquipment(receiver, NPCItemSlot.LEGGINGS, new ItemStack(Material.GOLDEN_LEGGINGS));
+    npc.setEquipment(receiver, NPCItemSlot.BOOTS, new ItemStack(Material.GOLDEN_BOOTS));
+    npc.setEquipment(receiver, NPCItemSlot.MAIN_HAND, new ItemStack(Material.GOLDEN_SWORD));
+    npc.setEquipment(receiver, NPCItemSlot.OFF_HAND, new ItemStack(Material.GOLDEN_SWORD));
+
+    new BukkitRunnable() {
+
+        boolean left = true;
+
+        @Override
+        public void run() {
+            if(left = !left) {
+                npc.playAnimation(receiver, NPCAnimation.SWING_MAIN_HAND);
+            } else {
+                npc.playAnimation(receiver, NPCAnimation.SWING_OFFHAND);
+            }
+
+
+        }
+    }.runTaskTimer(this, 20, 10);
+
+});
+
+
+
+NPCSkinTextures.getByUsername(this, "DanielTheDev", (success2, skin) -> {
+    final NPC npc = new NPC(spawnLocation, "DanielTheDev");
+
+    npc.setSkin(skin);
+    npc.spawnNPC(receiver);
+
+    npc.getMetadata().setParrotLeftShoulder((parrot -> {
+        parrot.setVariant(Parrot.Variant.BLUE);
+    }), receiver.getWorld());
+
+    npc.getMetadata().setParrotRightShoulder((parrot -> {
+        parrot.setVariant(Parrot.Variant.GREEN);
+    }), receiver.getWorld());
+
+    npc.updateMetadata(receiver);
+
+});
