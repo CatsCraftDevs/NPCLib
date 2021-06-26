@@ -5,7 +5,7 @@
         </repository>
 
         <dependency>
-            <groupId>lib.brainsynder</groupId>
+            <groupId>npc.brainsynder</groupId>
             <artifactId>NPCLib</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
